@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "avatar", "City", "Country", "CountryCode", "createdAt"],
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "avatar": {
+        "type": "string",
+        "format": "uri"
+      },
+      "City": {
+        "type": "string"
+      },
+      "Country": {
+        "type": "string"
+      },
+      "CountryCode": {
+        "type": "string"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  }
+}
