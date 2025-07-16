@@ -67,7 +67,6 @@
 
     </dependencies>
 
-<<<<<<< HEAD
 
     <profiles>
     <profile>
@@ -88,6 +87,3 @@
     </profiles>
 
 </project>
-=======
-</project>
->>>>>>> c956776f8601cf1692cec5cc813a16ffc0713018
