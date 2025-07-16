@@ -35,7 +35,7 @@ public class GetUsers {
         Users.then().body("username",instanceOf(String.class));
         for (Map.Entry<String, Object> entry : firstUser.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
-            ///
+
         }
     }
     @Test(priority = 3)
