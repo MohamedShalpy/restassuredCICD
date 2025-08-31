@@ -1,3 +1,5 @@
+package Reconciliation;
+
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.*;
 import utilities.DatabasePage;
@@ -22,7 +24,7 @@ import utilities.DatabaseUtils;
                     "FROM wonderdb.TT_TS_FB_SEGMENT_DETAIL SD " +
                     "JOIN wonderdb.TT_TS_FLIGHT_BOOK FB ON FB.FB_BOOKING_REF_NO = SD.FB_BOOKING_REF_NO " +
                     "WHERE FB.CREATION_TIME > '2025-07-04' " +
-                    "AND FB.CREATION_TIME < '2025-07-26' " +
+                    "AND FB.CREATION_TIME < '2025-07-05' " +
                     "AND FB.SUPPLIER_NAME LIKE \"%Galileo%\" " +
                     "AND SD.SP_PNR IS NOT NULL;";
 

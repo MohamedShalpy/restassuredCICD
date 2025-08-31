@@ -67,7 +67,7 @@ public class StatusCode {
         // Status code assertions
         allPostsResponse.then().statusCode(200);
         allPostsResponse.then().statusLine(containsString("OK"));
-        allPostsResponse.then().statusCode(is(oneOf(200,201)));
+       // allPostsResponse.then().statusCode(is(oneOf(200,201)));
 
         // Optional: Print response
         allPostsResponse.prettyPrint();

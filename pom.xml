@@ -31,7 +31,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ Apache Commons Lang (required by RestAssured JSON Schema Validator) -->
+        <!-- ✅ Apache Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -46,44 +46,93 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- ✅ Hamcrest -->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+
+        <!-- ✅ OpenCSV -->
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>5.9</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
+
+        <!-- ✅ Fillo -->
         <dependency>
             <groupId>com.codoid.products</groupId>
             <artifactId>fillo</artifactId>
             <version>1.18</version>
         </dependency>
 
+        <!-- ✅ SHAFT latest release -->
+        <dependency>
+            <groupId>io.github.shafthq</groupId>
+            <artifactId>SHAFT_ENGINE</artifactId>
+            <version>8.2.20240624</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ✅ XML Path (RestAssured) -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
+    <!-- ✅ Build section with shade plugin -->
+    <build>
+        <plugins>
+            <!-- ✅ Maven Shade Plugin to remove broken SHAFT TestNGListener -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>io.github.shafthq:SHAFT_ENGINE</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/services/org.testng.ITestNGListener</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
+    <!-- ✅ Profile for Surefire -->
     <profiles>
-    <profile>
-        <id>createUser</id>
-        <build>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>src/xml_files/createUser.xml</suiteXmlFile>
-                        </suiteXmlFiles>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
+        <profile>
+            <id>createUser</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/xml_files/createUser.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
